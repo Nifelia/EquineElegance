@@ -45,6 +45,7 @@
     <Compile Include="Blanket.cs" />
     <Compile Include="Cap.cs" />
     <Compile Include="EquineEleganceEnums.cs" />
+    <Compile Include="Feeder.cs" />
     <Compile Include="HorseProduct.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

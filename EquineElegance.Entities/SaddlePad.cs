@@ -8,6 +8,8 @@ namespace EquineElegance.Entities
 {
     public class SaddlePad : HorseProduct
     {
+        // SaddlePad (dekjes) class die overerft van Product en HorseProduct en waarin je nog apart het type dekje kan ingeven
+
         public SaddlePadType SaddlePadType { get; set; }
 
         public SaddlePad(string name, string description, double price, string image, int amountInStock, Color color, HorseSize horseSize, 

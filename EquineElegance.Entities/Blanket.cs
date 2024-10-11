@@ -8,6 +8,8 @@ namespace EquineElegance.Entities
 {
     public class Blanket : HorseProduct
     {
+        // Blanket (deken) class met de overerving van Product & HorseProduct waarin het type dekje kan bepaald worden
+
         public BlanketType BlanketType { get; set; }
 
         public Blanket(string name, string description, double price, string image, int amountInStock, Color color, HorseSize horseSize, 

@@ -8,6 +8,8 @@ namespace EquineElegance.Entities
 {
     public class Cap : RiderProduct
     {
+        // Cap (helm) class die overerft van Product en RiderProduct waarin je de maat kan beslissen
+
         public CapSize CapSize { get; set; }
 
         public Cap(string name, string description, double price, string image, int amountInStock, Color color, CapSize capSize) : 

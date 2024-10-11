@@ -8,6 +8,8 @@ namespace EquineElegance.Entities
 {
     public class RidingPants : RiderProduct
     {
+        // RidingPants (rijbroek) class die overerft van Product en RiderProduct waarin je het geslacht en maat kan ingeven
+
         public Gender Gender { get; set; }
         public PantsSize PantsSize { get; set; }
 
