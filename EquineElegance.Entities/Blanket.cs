@@ -12,7 +12,7 @@ namespace EquineElegance.Entities
 
         public BlanketType BlanketType { get; set; }
 
-        public Blanket(string name, string description, double price, string image, int amountInStock, Color color, HorseSize horseSize, 
+        public Blanket(string name, string description, decimal price, string image, int amountInStock, Color color, HorseSize horseSize, 
             BlanketType blanketType) : base(name, description, price, image, amountInStock, color, horseSize)
         {
             BlanketType = blanketType;

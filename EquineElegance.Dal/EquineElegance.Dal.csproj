@@ -51,7 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CapDal.cs" />
     <Compile Include="EquineEleganceDbContext.cs" />
+    <Compile Include="Migrations\202410111519037_CreateDatabase.cs" />
+    <Compile Include="Migrations\202410111519037_CreateDatabase.Designer.cs">
+      <DependentUpon>202410111519037_CreateDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410112021039_ChangeDoubleToDecimal.cs" />
+    <Compile Include="Migrations\202410112021039_ChangeDoubleToDecimal.Designer.cs">
+      <DependentUpon>202410112021039_ChangeDoubleToDecimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +73,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202410111519037_CreateDatabase.resx">
+      <DependentUpon>202410111519037_CreateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410112021039_ChangeDoubleToDecimal.resx">
+      <DependentUpon>202410112021039_ChangeDoubleToDecimal.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

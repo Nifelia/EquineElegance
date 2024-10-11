@@ -13,7 +13,7 @@ namespace EquineElegance.Entities
         public Color Color { get; set; }
         public HorseSize HorseSize { get; set; }
 
-        public HorseProduct(string name, string description, double price, string image, int amountInStock, Color color, HorseSize horseSize) : 
+        public HorseProduct(string name, string description, decimal price, string image, int amountInStock, Color color, HorseSize horseSize) : 
             base(name, description, price, image, amountInStock)
         {
             Color = color;

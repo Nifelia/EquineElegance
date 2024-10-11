@@ -12,7 +12,7 @@ namespace EquineElegance.Entities
 
         public CapSize CapSize { get; set; }
 
-        public Cap(string name, string description, double price, string image, int amountInStock, Color color, CapSize capSize) : 
+        public Cap(string name, string description, decimal price, string image, int amountInStock, Color color, CapSize capSize) : 
             base(name, description, price, image, amountInStock, color)
         {
             CapSize = capSize;

@@ -15,11 +15,11 @@ namespace EquineElegance.Entities
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string Image { get; set; }
         public int AmountInStock { get; set; }
 
-        public Product(string name, string description, double price, string image, int amountInStock)
+        public Product(string name, string description, decimal price, string image, int amountInStock)
         {
             Name = name;
             Description = description;

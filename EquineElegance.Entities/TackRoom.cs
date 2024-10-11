@@ -12,7 +12,7 @@ namespace EquineElegance.Entities
 
         public TackRoomHangerType TackRoomHangerType { get; set; }
 
-        public TackRoom(string name, string description, double price, string image, int amountInStock, string dimensions, TackRoomHangerType tackRoomHangerType) :
+        public TackRoom(string name, string description, decimal price, string image, int amountInStock, string dimensions, TackRoomHangerType tackRoomHangerType) :
             base(name, description, price, image, amountInStock, dimensions)
         {
             TackRoomHangerType = tackRoomHangerType;

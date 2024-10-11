@@ -12,7 +12,7 @@ namespace EquineElegance.Entities
 
         public string Dimensions { get; set; }
 
-        public StableProduct(string name, string description, double price, string image, int amountInStock, string dimensions) : 
+        public StableProduct(string name, string description, decimal price, string image, int amountInStock, string dimensions) : 
             base(name, description, price, image, amountInStock)
         {
             Dimensions = dimensions;
