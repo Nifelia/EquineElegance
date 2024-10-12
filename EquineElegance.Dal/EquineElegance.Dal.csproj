@@ -61,6 +61,10 @@
     <Compile Include="Migrations\202410112021039_ChangeDoubleToDecimal.Designer.cs">
       <DependentUpon>202410112021039_ChangeDoubleToDecimal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410121933247_AddCapValidation.cs" />
+    <Compile Include="Migrations\202410121933247_AddCapValidation.Designer.cs">
+      <DependentUpon>202410121933247_AddCapValidation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410112021039_ChangeDoubleToDecimal.resx">
       <DependentUpon>202410112021039_ChangeDoubleToDecimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410121933247_AddCapValidation.resx">
+      <DependentUpon>202410121933247_AddCapValidation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

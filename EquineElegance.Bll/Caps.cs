@@ -13,6 +13,11 @@ namespace EquineElegance.Bll
         // CREATE
         public static bool Create(string name, string description, decimal price, string image, int amountInStock, Color color, CapSize capSize)
         {
+            // Trim zorgt ervoor dat een geen whitespace voor en na de Trim aanwezig is
+            name = name.Trim();
+            description = description.Trim();
+            image = image.Trim();
+
             Cap cap = new Cap(name, description, price, image, amountInStock, color, capSize);
             return CapDal.Create(cap);
         }

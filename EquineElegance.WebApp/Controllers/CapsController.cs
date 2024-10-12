@@ -22,6 +22,8 @@ namespace EquineElegance.WebApp.Controllers
         [HttpPost]
         public ActionResult Create(string name, string description, decimal price, string image, int amountInStock, Color color, CapSize capSize)
         {
+            // hier ga ik later nog een code schrijven dat er correct afbeeldingen kunnen toegevoegd worden, zo niet, dan een standaard image
+
             // bool methode die checkt als het lukt om member te aan te maken
             bool createSuccessful = Caps.Create(name, description, price, image, amountInStock, color, capSize);
 
