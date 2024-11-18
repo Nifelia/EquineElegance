@@ -10,12 +10,12 @@ namespace EquineElegance.Dal
 {
     internal class EquineEleganceDbContext : DbContext
     {
-        DbSet<Blanket> Blankets { get; set; }
+        public DbSet<Blanket> Blankets { get; set; }
         public DbSet<Cap> Caps { get; set; }
-        DbSet<Feeder> Feeders { get; set; }
-        DbSet<RidingPants> RidingPants { get; set; }
-        DbSet<SaddlePad> SaddlePads { get; set; }
-        DbSet<TackRoom> TackRooms { get; set; }
+        public DbSet<Feeder> Feeders { get; set; }
+        public DbSet<RidingPant> RidingPants { get; set; }
+        public DbSet<SaddlePad> SaddlePads { get; set; }
+        public DbSet<TackRoom> TackRooms { get; set; }
 
         public EquineEleganceDbContext() : base(@"Data Source=.\SQLEXPRESS;Initial Catalog=EquineElegance;Integrated Security=True")
         {

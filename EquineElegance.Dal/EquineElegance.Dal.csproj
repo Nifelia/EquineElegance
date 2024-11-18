@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RidingPantDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EquineElegance.Entities\EquineElegance.Entities.csproj">

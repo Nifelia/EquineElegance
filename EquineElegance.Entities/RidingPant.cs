@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace EquineElegance.Entities
 {
-    public class RidingPants : RiderProduct
+    public class RidingPant : RiderProduct
     {
         // RidingPants (rijbroek) class die overerft van Product en RiderProduct waarin je het geslacht en maat kan ingeven
 
         public Gender Gender { get; set; }
         public PantsSize PantsSize { get; set; }
 
-        public RidingPants(string name, string description, decimal price, string image, int amountInStock, Color color, Gender gender, PantsSize pantsSize) : 
+        public RidingPant(string name, string description, decimal price, string image, int amountInStock, Color color, Gender gender, PantsSize pantsSize) : 
             base(name ,description, price, image, amountInStock, color)
         {
             Gender = gender;
             PantsSize = pantsSize;
         }
 
-        public RidingPants()
+        public RidingPant()
         {
             
         }

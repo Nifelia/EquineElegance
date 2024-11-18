@@ -46,9 +46,9 @@ namespace EquineElegance.WebApp
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+            clientId: "3a946db1-a142-4545-8277-e0773a338a2b",
+            clientSecret: "90c6efd8-acce-42f4-b267-b806e8adea99");
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",

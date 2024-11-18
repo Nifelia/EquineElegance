@@ -16,7 +16,6 @@ namespace EquineElegance.Bll
             // Trim zorgt ervoor dat een geen whitespace voor en na de Trim aanwezig is
             name = name.Trim();
             description = description.Trim();
-            image = image.Trim();
 
             Cap cap = new Cap(name, description, price, image, amountInStock, color, capSize);
             return CapDal.Create(cap);
@@ -41,6 +40,36 @@ namespace EquineElegance.Bll
             }
 
             return cap;
+        }
+
+        // EDIT
+        public static bool Update(int productId, string name, string description, decimal price, string image,
+            int amountInStock, Color color, CapSize capSize)
+        {
+            name = name.Trim();
+            description = description.Trim();
+
+            Cap cap = CapDal.Read(productId);
+
+            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description))
+            {
+                cap.Name = name;
+                cap.Description = description;
+                cap.Price = price;
+                cap.Image = image;
+                cap.AmountInStock = amountInStock;
+                cap.Color = color;
+                cap.CapSize = capSize;
+            }
+
+            return CapDal.Update(cap);
+        }
+
+        // DELETE
+        public static bool Delete(int productId)
+        {
+            Cap cap = CapDal.Read(productId);
+            return CapDal.Delete(cap);
         }
     }
 }

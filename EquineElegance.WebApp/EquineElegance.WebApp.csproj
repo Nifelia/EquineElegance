@@ -162,13 +162,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CapsController.cs" />
+    <Compile Include="Controllers\CapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RidingPantController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AuthModels.cs" />
     <Compile Include="Models\DecimalModelBinder.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -192,6 +195,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Images\Caps\unknown.jpg" />
+    <Content Include="Content\Images\RidingPants\unknown.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -246,9 +251,20 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Caps\Index.cshtml" />
-    <Content Include="Views\Caps\Details.cshtml" />
-    <Content Include="Views\Caps\Create.cshtml" />
+    <Content Include="Views\Cap\Create.cshtml" />
+    <Content Include="Views\Cap\Index.cshtml" />
+    <Content Include="Views\Cap\Details.cshtml" />
+    <Content Include="Views\Cap\Edit.cshtml" />
+    <Content Include="Views\Cap\Delete.cshtml" />
+    <Content Include="Views\RidingPant\Create.cshtml" />
+    <Content Include="Views\RidingPant\Index.cshtml" />
+    <Content Include="Views\RidingPant\Edit.cshtml" />
+    <Content Include="Views\RidingPant\Delete.cshtml" />
+    <Content Include="Views\RidingPant\Details.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\ManageUserRoles.cshtml" />
+    <Content Include="Views\Roles\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
