@@ -27,7 +27,7 @@ namespace EquineElegance.WebApp.Controllers
             string imageName = "unknown.jpg";
             if (image != null)
             {
-                string path = Server.MapPath("~/Content/Images/Caps/");
+                string path = Server.MapPath("~/Content/Images/RidingPants/");
                 imageName = Guid.NewGuid() + Path.GetExtension(image.FileName);
                 path += imageName;
                 image.SaveAs(path);
@@ -89,7 +89,7 @@ namespace EquineElegance.WebApp.Controllers
 
             if (image != null)
             {
-                string path = Server.MapPath("~/Content/Images/Caps/");
+                string path = Server.MapPath("~/Content/Images/RidingPants/");
                 if (!string.IsNullOrEmpty(imageName))
                 {
                     string oldPicture = Path.Combine(path, imageName);

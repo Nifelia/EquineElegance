@@ -18,6 +18,7 @@ namespace EquineElegance.Entities
             base(name, description, price, image, amountInStock, color)
         {
             CapSize = capSize;
+            ProductType = ProductType.Cap;
         }
 
         public Cap()

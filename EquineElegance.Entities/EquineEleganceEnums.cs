@@ -81,4 +81,14 @@ namespace EquineElegance.Entities
         SaddlePadHanger,
         SaddleHanger
     }
+
+    public enum ProductType
+    {
+        Blanket,
+        Cap,
+        Feeder,
+        RidingPant,
+        SaddlePad,
+        TackRoom
+    }
 }

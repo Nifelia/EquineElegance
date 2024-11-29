@@ -1,0 +1,50 @@
+﻿@using EquineElegance.Entities
+@using WebGrease
+
+@{
+	ViewBag.Title = "Winkelkar";
+}
+
+<h2>Winkelkar</h2>
+
+<!-- tabel met huidige items in winkelkar -->
+
+<table>
+    
+	<tr>
+		<th>Product</th>
+		<th>Aantal</th>
+		<th>Prijs</th>
+	</tr>
+    
+	<!-- als er een winkelkar bestaat, inhoud van kar tonen in tabel -->
+	@if (Session["cart"] != null)
+	{
+		<!-- Cart object aanmaken op basis van Session -->
+		Cart cart = (Cart)Session["cart"];
+
+		foreach (var item in cart.CartItems)
+		{
+			<tr>
+				<td>@item.Product.Name</td>
+				<td>@item.Amount</td>
+				@{
+					decimal productPrice = item.Amount * item.Product.Price;
+				}
+				<td>@productPrice</td>
+			</tr>
+		}
+
+		<!-- totaalprijs berekenen -->
+		<tr>
+			<td colspan="2">Totaal</td>
+			@{
+				decimal totalPrice = cart.CartItems.Sum(item => item.Product.Price * item.Amount);
+			}
+			<td>@totalPrice</td>
+		</tr>
+	} 
+
+</table>
+
+@Html.ActionLink("Kar leegmaken", "ClearCart", "Cart")

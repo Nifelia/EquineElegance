@@ -31,6 +31,8 @@ namespace EquineElegance.Entities
         [Range(0, 1000, ErrorMessage = "Voorraad moet 0 of hoger zijn.")]
         public int AmountInStock { get; set; }
 
+        public ProductType ProductType { get; set; }
+
         public Product(string name, string description, decimal price, string image, int amountInStock)
         {
             Name = name;

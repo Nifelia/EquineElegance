@@ -16,6 +16,7 @@ namespace EquineElegance.Entities
             BlanketType blanketType) : base(name, description, price, image, amountInStock, color, horseSize)
         {
             BlanketType = blanketType;
+            ProductType = ProductType.Blanket;
         }
 
         public Blanket()

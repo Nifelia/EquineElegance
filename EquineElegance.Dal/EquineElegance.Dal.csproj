@@ -51,19 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlanketDal.cs" />
     <Compile Include="CapDal.cs" />
     <Compile Include="EquineEleganceDbContext.cs" />
-    <Compile Include="Migrations\202410111519037_CreateDatabase.cs" />
-    <Compile Include="Migrations\202410111519037_CreateDatabase.Designer.cs">
-      <DependentUpon>202410111519037_CreateDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202411282130438_UpdateAll.cs" />
+    <Compile Include="Migrations\202411282130438_UpdateAll.Designer.cs">
+      <DependentUpon>202411282130438_UpdateAll.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202410112021039_ChangeDoubleToDecimal.cs" />
-    <Compile Include="Migrations\202410112021039_ChangeDoubleToDecimal.Designer.cs">
-      <DependentUpon>202410112021039_ChangeDoubleToDecimal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202410121933247_AddCapValidation.cs" />
-    <Compile Include="Migrations\202410121933247_AddCapValidation.Designer.cs">
-      <DependentUpon>202410121933247_AddCapValidation.cs</DependentUpon>
+    <Compile Include="Migrations\202411291536549_ChangesToCartItem.cs" />
+    <Compile Include="Migrations\202411291536549_ChangesToCartItem.Designer.cs">
+      <DependentUpon>202411291536549_ChangesToCartItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,14 +77,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202410111519037_CreateDatabase.resx">
-      <DependentUpon>202410111519037_CreateDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202411282130438_UpdateAll.resx">
+      <DependentUpon>202411282130438_UpdateAll.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202410112021039_ChangeDoubleToDecimal.resx">
-      <DependentUpon>202410112021039_ChangeDoubleToDecimal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202410121933247_AddCapValidation.resx">
-      <DependentUpon>202410121933247_AddCapValidation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202411291536549_ChangesToCartItem.resx">
+      <DependentUpon>202411291536549_ChangesToCartItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

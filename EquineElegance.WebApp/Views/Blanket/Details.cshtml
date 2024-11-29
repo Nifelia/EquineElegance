@@ -1,0 +1,76 @@
+﻿@model EquineElegance.Entities.Blanket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Blanket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountInStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountInStock)
+        </dd>
+
+        <img src="~/Content/Images/Blankets/@Model.Image" width="200" />
+
+    </dl>
+</div>
+
+<!-- HTML formulier beginnen in C# -->
+@using (Html.BeginForm("ProductToCart", "Cart", FormMethod.Post))
+{
+    <!-- id van product meegeven met form naar action -->
+    @Html.HiddenFor(model => model.ProductId)
+    @Html.HiddenFor(model => model.ProductType)
+    <!-- knop om data te versturen -->
+    <input type="submit" value="Koop" class="btn btn-primary" />
+}
+
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId })
+    </p>
+}
+
+@Html.ActionLink("Back to List", "Index")
+

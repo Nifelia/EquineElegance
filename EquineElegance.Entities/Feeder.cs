@@ -16,6 +16,7 @@ namespace EquineElegance.Entities
             base(name, description, price, image, amountInStock, dimensions)
         {
             Capacity = capacity;
+            ProductType = ProductType.Feeder;
         }
 
         public Feeder()

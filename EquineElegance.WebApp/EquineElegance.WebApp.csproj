@@ -162,7 +162,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BlanketController.cs" />
     <Compile Include="Controllers\CapController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RidingPantController.cs" />
@@ -179,6 +181,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-EquineElegance.WebApp-20241008053150.mdf" />
+    <Content Include="App_Data\aspnet-EquineElegance.WebApp-20241008053150_log.ldf">
+      <DependentUpon>aspnet-EquineElegance.WebApp-20241008053150.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -195,6 +201,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Images\Blankets\unknown.jpg" />
     <Content Include="Content\Images\Caps\unknown.jpg" />
     <Content Include="Content\Images\RidingPants\unknown.jpg" />
     <Content Include="favicon.ico" />
@@ -265,10 +272,14 @@
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\ManageUserRoles.cshtml" />
     <Content Include="Views\Roles\Users.cshtml" />
+    <Content Include="Views\Blanket\Create.cshtml" />
+    <Content Include="Views\Blanket\Index.cshtml" />
+    <Content Include="Views\Blanket\Details.cshtml" />
+    <Content Include="Views\Blanket\Edit.cshtml" />
+    <Content Include="Views\Blanket\Delete.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />

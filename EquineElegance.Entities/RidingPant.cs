@@ -14,10 +14,11 @@ namespace EquineElegance.Entities
         public PantsSize PantsSize { get; set; }
 
         public RidingPant(string name, string description, decimal price, string image, int amountInStock, Color color, Gender gender, PantsSize pantsSize) : 
-            base(name ,description, price, image, amountInStock, color)
+            base(name, description, price, image, amountInStock, color)
         {
             Gender = gender;
             PantsSize = pantsSize;
+            ProductType = ProductType.RidingPant;
         }
 
         public RidingPant()

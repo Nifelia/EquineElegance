@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Blanket.cs" />
     <Compile Include="Cap.cs" />
+    <Compile Include="Cart.cs" />
+    <Compile Include="CartItem.cs" />
     <Compile Include="EquineEleganceEnums.cs" />
     <Compile Include="Feeder.cs" />
     <Compile Include="HorseProduct.cs" />

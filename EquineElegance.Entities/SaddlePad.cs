@@ -16,6 +16,7 @@ namespace EquineElegance.Entities
             SaddlePadType saddlePadType) : base(name, description, price, image, amountInStock, color, horseSize)
         {
             SaddlePadType = saddlePadType;
+            ProductType = ProductType.SaddlePad;
         }
 
         public SaddlePad()

@@ -16,6 +16,7 @@ namespace EquineElegance.Entities
             base(name, description, price, image, amountInStock, dimensions)
         {
             TackRoomHangerType = tackRoomHangerType;
+            ProductType = ProductType.TackRoom;
         }
 
         public TackRoom()
