@@ -165,10 +165,13 @@
     <Compile Include="Controllers\BlanketController.cs" />
     <Compile Include="Controllers\CapController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\FeederController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RidingPantController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SaddlePadController.cs" />
+    <Compile Include="Controllers\TackRoomController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,6 +281,21 @@
     <Content Include="Views\Blanket\Edit.cshtml" />
     <Content Include="Views\Blanket\Delete.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\SaddlePad\Create.cshtml" />
+    <Content Include="Views\SaddlePad\Index.cshtml" />
+    <Content Include="Views\SaddlePad\Details.cshtml" />
+    <Content Include="Views\SaddlePad\Edit.cshtml" />
+    <Content Include="Views\SaddlePad\Delete.cshtml" />
+    <Content Include="Views\Feeder\Create.cshtml" />
+    <Content Include="Views\Feeder\Index.cshtml" />
+    <Content Include="Views\Feeder\Details.cshtml" />
+    <Content Include="Views\Feeder\Edit.cshtml" />
+    <Content Include="Views\Feeder\Delete.cshtml" />
+    <Content Include="Views\TackRoom\Create.cshtml" />
+    <Content Include="Views\TackRoom\Index.cshtml" />
+    <Content Include="Views\TackRoom\Details.cshtml" />
+    <Content Include="Views\TackRoom\Edit.cshtml" />
+    <Content Include="Views\TackRoom\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

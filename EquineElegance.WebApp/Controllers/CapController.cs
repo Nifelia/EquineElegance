@@ -76,32 +76,30 @@ namespace EquineElegance.WebApp.Controllers
             int amountInStock, Color color, CapSize capSize)
         {
             Cap cap = Caps.Read(productId);
+
             string imageName = cap.Image;
-
-            if (imageName == "unknown.jpg")
-            {
-                cap.Image = Guid.NewGuid().ToString();
-            }
-
-            if (!Path.HasExtension(cap.Image))
-            {
-                imageName = cap.Image + Path.GetExtension(image.FileName);
-            }
 
             if (image != null)
             {
+                imageName = (cap.Image == "unknown.jpg" ? Guid.NewGuid().ToString() : cap.Image) + Path.GetExtension(image.FileName);
+
                 string path = Server.MapPath("~/Content/Images/Caps/");
-                if (!string.IsNullOrEmpty(imageName))
+
+                if (!string.IsNullOrEmpty(cap.Image) && cap.Image != "unknown.jpg")
                 {
-                    string oldPicture = Path.Combine(path, imageName);
+                    string oldPicture = Path.Combine(path, cap.Image);
                     if (System.IO.File.Exists(oldPicture))
                     {
                         System.IO.File.Delete(oldPicture);
                     }
                 }
+
                 string newPicture = Path.Combine(path, imageName);
                 image.SaveAs(newPicture);
-
+            }
+            else
+            {
+                imageName = cap.Image;
             }
 
             Caps.Update(productId, name, description, price, imageName, amountInStock, color, capSize);

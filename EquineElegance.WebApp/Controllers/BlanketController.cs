@@ -75,24 +75,19 @@ namespace EquineElegance.WebApp.Controllers
         public ActionResult Edit(int productId, string name, string description, decimal price, HttpPostedFileBase image, int amountInStock, Color color, HorseSize horseSize, BlanketType blanketType)
         {
             Blanket b = Blankets.Read(productId);
+            
             string imageName = b.Image;
-
-            if (imageName == "unknown.jpg")
-            {
-                b.Image = Guid.NewGuid().ToString();
-            }
-
-            if (!Path.HasExtension(b.Image))
-            {
-                imageName = b.Image + Path.GetExtension(image.FileName);
-            }
 
             if (image != null)
             {
+                imageName = (b.Image == "unknown.jpg" ? Guid.NewGuid().ToString() : b.Image) +
+                            Path.GetExtension(image.FileName);
+
                 string path = Server.MapPath("~/Content/Images/Blankets/");
-                if (!string.IsNullOrEmpty(imageName))
+
+                if (!string.IsNullOrEmpty(b.Image) && b.Image != "unknown.jpg")
                 {
-                    string oldPicture = Path.Combine(path, imageName);
+                    string oldPicture = Path.Combine(path, b.Image);
                     if (System.IO.File.Exists(oldPicture))
                     {
                         System.IO.File.Delete(oldPicture);
@@ -100,7 +95,10 @@ namespace EquineElegance.WebApp.Controllers
                 }
                 string newPicture = Path.Combine(path, imageName);
                 image.SaveAs(newPicture);
-
+            }
+            else
+            {
+                imageName = b.Image;
             }
 
             Blankets.Update(productId, name, description, price, imageName, amountInStock, color, horseSize, blanketType);

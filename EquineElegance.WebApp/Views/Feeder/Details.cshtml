@@ -1,0 +1,82 @@
+﻿@model EquineElegance.Entities.Feeder
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Feeder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountInStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountInStock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dimensions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dimensions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Capacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Capacity)
+        </dd>
+
+        img src="~/Content/Images/Feeders/@Model.Image" width="200" />
+
+    </dl>
+</div>
+
+@using (Html.BeginForm("ProductToCart", "Cart", FormMethod.Post))
+{
+	<!-- id van product meegeven met form naar action -->
+	@Html.HiddenFor(model => model.ProductId)
+	@Html.HiddenFor(model => model.ProductType)
+	<!-- knop om data te versturen -->
+	<input type="submit" value="Koop" class="btn btn-primary" />
+}
+
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
+{
+	<p>
+		@Html.ActionLink("Edit", "Edit", new { id = Model.ProductId })
+	</p>
+}
+	
+@Html.ActionLink("Back to List", "Index")

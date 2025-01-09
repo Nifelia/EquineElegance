@@ -43,8 +43,11 @@
   <ItemGroup>
     <Compile Include="Blankets.cs" />
     <Compile Include="Caps.cs" />
+    <Compile Include="Feeders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RidingPants.cs" />
+    <Compile Include="SaddlePads.cs" />
+    <Compile Include="TackRooms.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EquineElegance.Dal\EquineElegance.Dal.csproj">

@@ -9,7 +9,7 @@
 
 <p>@ViewBag.Feedback</p>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Cap", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

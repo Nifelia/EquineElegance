@@ -16,7 +16,7 @@ namespace EquineElegance.WebApp.Controllers
             return View();
         }
 
-        //methode om food aan winkelkar toe te voegen
+        //methode om product aan winkelkar toe te voegen
         [HttpPost]
         public ActionResult ProductToCart(int productId, ProductType productType)
         {
@@ -34,18 +34,18 @@ namespace EquineElegance.WebApp.Controllers
                 case ProductType.Cap:
                     c.Product = Caps.Read(productId);
                     break;
-                /*case ProductType.Feeder:
+                case ProductType.Feeder:
                     c.Product = Feeders.Read(productId);
-                    break;*/
+                    break;
                 case ProductType.RidingPant:
                     c.Product = RidingPants.Read(productId);
                     break;
-                /*case ProductType.SaddlePad:
+                case ProductType.SaddlePad:
                     c.Product = SaddlePads.Read(productId);
-                    break;*/
-                /*case ProductType.TackRoom:
+                    break;
+                case ProductType.TackRoom:
                     c.Product = TackRooms.Read(productId);
-                    break;*/
+                    break;
             }
 
             //als er nog geen winkelkar is

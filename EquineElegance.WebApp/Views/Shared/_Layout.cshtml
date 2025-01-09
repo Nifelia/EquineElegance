@@ -21,9 +21,12 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Cap", "Index", "Cap", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Caps", "Index", "Cap", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("RidingPants", "Index", "RidingPant", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Blankets", "Index", "Blanket", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("SaddlePads", "Index", "SaddlePad", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Feeders", "Index", "Feeder", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("TackRooms", "Index", "TackRoom", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Cart", "Index", "Cart", new { area = "" }, new { @class = "nav-link" })</li>
 
                     @if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))

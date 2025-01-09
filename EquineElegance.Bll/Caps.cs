@@ -13,7 +13,7 @@ namespace EquineElegance.Bll
         // CREATE
         public static bool Create(string name, string description, decimal price, string image, int amountInStock, Color color, CapSize capSize)
         {
-            // Trim zorgt ervoor dat een geen whitespace voor en na de Trim aanwezig is
+            // Trim zorgt ervoor dat er geen whitespace voor en na de Trim aanwezig is
             name = name.Trim();
             description = description.Trim();
 

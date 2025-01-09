@@ -6,7 +6,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Blanket", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", type = "number", step = "0.01", min = "0" } })
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AmountInStock, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AmountInStock, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.AmountInStock, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0" } })
                 @Html.ValidationMessageFor(model => model.AmountInStock, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -63,7 +63,7 @@
 	        <div class="col-md-10">
 		        @Html.DropDownListFor(model => model.HorseSize,
 			        new SelectList(Enum.GetValues(typeof(EquineElegance.Entities.HorseSize))),
-			        "Selecteer een gender", new { @class = "form-control" })
+			        "Selecteer een paardenmaat", new { @class = "form-control" })
 	        </div>
         </div>
 
@@ -72,7 +72,7 @@
 	        <div class="col-md-10">
 		        @Html.DropDownListFor(model => model.BlanketType,
 			        new SelectList(Enum.GetValues(typeof(EquineElegance.Entities.BlanketType))),
-			        "Selecteer een size", new { @class = "form-control" })
+			        "Selecteer een dekentype", new { @class = "form-control" })
 	        </div>
         </div>
 

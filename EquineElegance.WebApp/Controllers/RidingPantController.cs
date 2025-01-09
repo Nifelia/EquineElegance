@@ -75,24 +75,19 @@ namespace EquineElegance.WebApp.Controllers
         public ActionResult Edit(int productId, string name, string description, decimal price, HttpPostedFileBase image, int amountInStock, Color color, Gender gender, PantsSize pantsSize)
         {
             RidingPant rp = RidingPants.Read(productId);
+
             string imageName = rp.Image;
-
-            if (imageName == "unknown.jpg")
-            {
-                rp.Image = Guid.NewGuid().ToString();
-            }
-
-            if (!Path.HasExtension(rp.Image))
-            {
-                imageName = rp.Image + Path.GetExtension(image.FileName);
-            }
 
             if (image != null)
             {
+                imageName = (rp.Image == "unknown.jpg" ? Guid.NewGuid().ToString() : rp.Image) +
+                            Path.GetExtension(image.FileName);
+
                 string path = Server.MapPath("~/Content/Images/RidingPants/");
-                if (!string.IsNullOrEmpty(imageName))
+
+                if (!string.IsNullOrEmpty(rp.Image) && rp.Image != "unknown.jpg")
                 {
-                    string oldPicture = Path.Combine(path, imageName);
+                    string oldPicture = Path.Combine(path, rp.Image);
                     if (System.IO.File.Exists(oldPicture))
                     {
                         System.IO.File.Delete(oldPicture);
@@ -101,6 +96,10 @@ namespace EquineElegance.WebApp.Controllers
                 string newPicture = Path.Combine(path, imageName);
                 image.SaveAs(newPicture);
 
+            }
+            else
+            {
+                imageName = rp.Image;
             }
 
             RidingPants.Update(productId, name, description, price, imageName, amountInStock, color, gender, pantsSize);
