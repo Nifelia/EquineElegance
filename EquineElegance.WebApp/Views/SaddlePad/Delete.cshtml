@@ -53,8 +53,9 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+    @using (Html.BeginForm("DeleteConfirmed", "SaddlePad")) {
+	    @Html.AntiForgeryToken()
+	    @Html.HiddenFor((model => model.ProductId))
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |

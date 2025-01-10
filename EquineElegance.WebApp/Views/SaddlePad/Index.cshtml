@@ -1,65 +1,54 @@
 ﻿@model IEnumerable<EquineElegance.Entities.SaddlePad>
 
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Saddle Pad - Index";
 }
 
-<h2>Index</h2>
+<h2 class="text-center mb-4" style="color: #4dc7ef;">Explore Our Saddle Pad Collection</h2>
 
 @if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
 {
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <div class="text-end mb-3">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary", style = "background-color: #f5c656; border-color: #f5c656;" })
+    </div>
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AmountInStock)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    @if (!Model.Any())
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AmountInStock)
-            </td>
-            <td>
-	            @if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
-	            {
-		            <p> @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) </p>
-		            <p> @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }) </p>
-	            }
-
-	            <p>@Html.ActionLink("Details", "Details", new { id = item.ProductId })</p>
-            </td>
-        </tr>
+        <div class="col text-center">
+            <p class="text-muted">No saddle pads available at the moment.</p>
+        </div>
     }
-
-</table>
+    else
+    {
+        foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <!-- Assuming you have a similar image path structure as the other collections -->
+                    <img src="@Url.Content("~/Content/Images/SaddlePads/" + item.Image)"
+                         class="card-img-top"
+                         alt="@item.Name"
+                         style="height: 200px; object-fit: cover; width: 100%;" />
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #f5c656;">@item.Name</h5>
+                        <p class="card-text text-muted">@item.Description</p>
+                        <p class="fw-bold" style="color: #23d79b;">$@item.Price</p>
+                        <p class="text-muted small">Stock: @item.AmountInStock</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center">
+                        @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "btn btn-sm btn-success", style = "background-color: #23d79b; border-color: #23d79b;" })
+                        @if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-sm btn-info", style = "background-color: #4dc7ef; border-color: #4dc7ef;" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "btn btn-sm btn-danger" })
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

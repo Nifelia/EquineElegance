@@ -28,6 +28,12 @@ body {
     background-color: #f5c656 !important;
 }
 
+/* Custom background color for dropdown menu */
+    .navbar .dropdown-menu {
+        background-color: #fff7e0 !important; /* Use !important to override default styles */
+    }
+
+
 /* Footer background color */
 footer {
     background-color: #f5c656;

@@ -1,67 +1,52 @@
 ﻿@model EquineElegance.Entities.SaddlePad
 
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Product Details - " + Model.Name;
 }
 
-<h2>Details</h2>
+<div class="container mt-5">
+    <h2 class="text-center mb-4" style="color: #4dc7ef;">@Model.Name - Details</h2>
 
-<div>
-    <h4>SaddlePad</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Product Image -->
+            <img src="@Url.Content("~/Content/Images/SaddlePads/" + Model.Image)"
+                 class="img-fluid"
+                 alt="@Model.Name"
+                 style="height: 400px; object-fit: cover;" />
+        </div>
+        <div class="col-md-6">
+            <!-- Product Information -->
+            <h3 style="color: #f5c656;">@Model.Name</h3>
+            <p class="text-muted">@Model.Description</p>
+            <p class="fw-bold" style="color: #23d79b;">Price: $@Model.Price</p>
+            <p class="text-muted small">Stock: @Model.AmountInStock</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <!-- Add to Cart Button -->
+            @using (Html.BeginForm("ProductToCart", "Cart", FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.ProductId)
+                @Html.HiddenFor(model => model.ProductType)
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-lg" style="background-color: #f5c656; border-color: #f5c656;">Add to Cart</button>
+                </div>
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <!-- Action Links for Admins -->
+            @if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
+            {
+                <div class="mt-3">
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-sm btn-info", style = "background-color: #4dc7ef; border-color: #4dc7ef;" })
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.ProductId }, new { @class = "btn btn-sm btn-danger" })
+                </div>
+            }
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AmountInStock)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AmountInStock)
-        </dd>
-
-        <img src="~/Content/Images/SaddlePads/@Model.Image" width="200" />
-
-    </dl>
+    <!-- Back to List Link -->
+    <div class="mt-4 text-center">
+        @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-secondary" })
+    </div>
 </div>
-
-<!-- HTML formulier beginnen in C# -->
-@using (Html.BeginForm("ProductToCart", "Cart", FormMethod.Post))
-{
-	<!-- id van product meegeven met form naar action -->
-	@Html.HiddenFor(model => model.ProductId)
-	@Html.HiddenFor(model => model.ProductType)
-	<!-- knop om data te versturen -->
-	<input type="submit" value="Koop" class="btn btn-primary" />
-}
-
-@if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
-{
-	<p>
-		@Html.ActionLink("Edit", "Edit", new { id = Model.ProductId })
-	</p>
-}
-
-@Html.ActionLink("Back to List", "Index")

@@ -67,11 +67,11 @@ namespace EquineElegance.Dal
         }
 
         // DELETE
-        public static bool Delete(SaddlePad b)
+        public static bool Delete(SaddlePad sp)
         {
             using (var db = new EquineEleganceDbContext())
             {
-                db.Entry(b).State = EntityState.Deleted;
+                db.Entry(sp).State = EntityState.Deleted;
                 return db.SaveChanges() > 0;
             }
         }
