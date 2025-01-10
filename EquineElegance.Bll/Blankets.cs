@@ -66,6 +66,23 @@ namespace EquineElegance.Bll
             return BlanketDal.Update(b);
         }
 
+        // een andere Update voor makkelijker gebruik in de Cart om de stock te updaten
+        public static bool Update(Blanket b)
+        {
+            // Call the existing method with the cap object's properties
+            return Update(
+                b.ProductId,
+                b.Name,
+                b.Description,
+                b.Price,
+                b.Image,
+                b.AmountInStock,
+                b.Color,
+                b.HorseSize,
+                b.BlanketType
+            );
+        }
+
         // DELETE
         public static bool Delete(int productId)
         {

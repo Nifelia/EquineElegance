@@ -7,6 +7,13 @@
 
 <h2>Winkelkar</h2>
 
+@if (TempData["Error"] != null)
+{
+	<div class="alert alert-danger">
+		@TempData["Error"]
+	</div>
+}
+
 <!-- tabel met huidige items in winkelkar -->
 
 <table>

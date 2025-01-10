@@ -48,6 +48,17 @@ namespace EquineElegance.WebApp.Controllers
                     break;
             }
 
+            // Check if product is available in stock
+            if (c.Product == null || c.Product.AmountInStock <= 0)
+            {
+                TempData["Error"] = "Product niet meer op voorraad.";
+                return RedirectToAction("Index");
+            }
+
+            // Decrease stock when adding to cart
+            c.Product.AmountInStock--;
+            UpdateProductStock(c.Product, c.ProductType);
+
             //als er nog geen winkelkar is
             if (Session["cart"] == null)
             {
@@ -67,11 +78,11 @@ namespace EquineElegance.WebApp.Controllers
             //als er wel al een kar aanwezig is in de session
             else
             {
-                //bool aanmaken die aanduidt of een product al in de kar zit
-                bool exists = false;
-
                 //cart object aanmaken dat alles uit de huidige session haalt
                 Cart cart = (Cart)Session["cart"];
+
+                //bool aanmaken die aanduidt of een product al in de kar zit
+                bool exists = false;
 
                 //controleren of product al in de kar zit
                 foreach (var item in cart.CartItems)
@@ -88,7 +99,7 @@ namespace EquineElegance.WebApp.Controllers
                 //als het product nog NIET in de kar zit
                 if (!exists)
                 {
-                    //aantal van cartitem op 1 zetten
+                    //aantal van cartitem aanpassen, als er nog niks in zit, op 1 zetten
                     c.Amount = 1;
                     //cartitem toevoegen aan cart
                     cart.CartItems.Add(c);
@@ -102,7 +113,20 @@ namespace EquineElegance.WebApp.Controllers
 
         public ActionResult ClearCart()
         {
-            Session.Clear();
+            if (Session["cart"] != null)
+            {
+                Cart cart = (Cart)Session["cart"];
+
+                // Restore stock for each product in the cart
+                foreach (var item in cart.CartItems)
+                {
+                    item.Product.AmountInStock += item.Amount;
+                    UpdateProductStock(item.Product, item.ProductType);
+                }
+
+                Session.Clear();
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -116,7 +140,16 @@ namespace EquineElegance.WebApp.Controllers
 
                 if (item != null)
                 {
-                    item.Amount++; // Increment the amount
+                    if (item.Product.AmountInStock <= 0) // Check if stock is available
+                    {
+                        TempData["Error"] = "Product niet meer op voorraad."; // Show error message
+                    }
+                    else
+                    {
+                        item.Amount++; // Increment the amount
+                        item.Product.AmountInStock--; // Decrease the stock by 1
+                        UpdateProductStock(item.Product, item.ProductType);
+                    }
                 }
 
                 Session["cart"] = cart;
@@ -138,6 +171,8 @@ namespace EquineElegance.WebApp.Controllers
                     if (item.Amount > 1) // Ensure quantity doesn't go below 1
                     {
                         item.Amount--;
+                        item.Product.AmountInStock++;  // Restore stock when the quantity is decreased
+                        UpdateProductStock(item.Product, item.ProductType);
                     }
                 }
 
@@ -157,7 +192,11 @@ namespace EquineElegance.WebApp.Controllers
 
                 if (item != null)
                 {
-                    cart.CartItems.Remove(item); // Remove the item from the cart
+                    item.Product.AmountInStock += item.Amount;
+                    UpdateProductStock(item.Product, item.ProductType);
+
+                    // Remove the item from the cart
+                    cart.CartItems.Remove(item);
                 }
 
                 Session["cart"] = cart;
@@ -166,6 +205,32 @@ namespace EquineElegance.WebApp.Controllers
             return RedirectToAction("Index");
 
         }
+
+        private void UpdateProductStock(Product product, ProductType productType)
+        {
+            switch (productType)
+            {
+                case ProductType.Blanket:
+                    Blankets.Update((Blanket)product);
+                    break;
+                case ProductType.Cap:
+                    Caps.Update((Cap)product);
+                    break;
+                case ProductType.Feeder:
+                    Feeders.Update((Feeder)product);
+                    break;
+                case ProductType.RidingPant:
+                    RidingPants.Update((RidingPant)product);
+                    break;
+                case ProductType.SaddlePad:
+                    SaddlePads.Update((SaddlePad)product);
+                    break;
+                case ProductType.TackRoom:
+                    TackRooms.Update((TackRoom)product);
+                    break;
+            }
+        }
+
 
     }
 }

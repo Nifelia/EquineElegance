@@ -68,6 +68,23 @@ namespace EquineElegance.Bll
             return RidingPantDal.Update(rp);
         }
 
+        // een andere Update voor makkelijker gebruik in de Cart om de stock te updaten
+        public static bool Update(RidingPant rp)
+        {
+            // Call the existing method with the cap object's properties
+            return Update(
+                rp.ProductId,
+                rp.Name,
+                rp.Description,
+                rp.Price,
+                rp.Image,
+                rp.AmountInStock,
+                rp.Color,
+                rp.Gender,
+                rp.PantsSize
+            );
+        }
+
         // DELETE
         public static bool Delete(int productId)
         {

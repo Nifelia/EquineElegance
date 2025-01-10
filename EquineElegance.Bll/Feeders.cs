@@ -65,6 +65,22 @@ namespace EquineElegance.Bll
             return FeederDal.Update(f);
         }
 
+        // een andere Update voor makkelijker gebruik in de Cart om de stock te updaten
+        public static bool Update(Feeder f)
+        {
+            // Call the existing method with the cap object's properties
+            return Update(
+                f.ProductId,
+                f.Name,
+                f.Description,
+                f.Price,
+                f.Image,
+                f.AmountInStock,
+                f.Dimensions,
+                f.Capacity
+            );
+        }
+
         // DELETE
         public static bool Delete(int productId)
         {

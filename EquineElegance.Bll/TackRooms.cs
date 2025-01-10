@@ -65,6 +65,22 @@ namespace EquineElegance.Bll
             return TackRoomDal.Update(tr);
         }
 
+        // een andere Update voor makkelijker gebruik in de Cart om de stock te updaten
+        public static bool Update(TackRoom tr)
+        {
+            // Call the existing method with the cap object's properties
+            return Update(
+                tr.ProductId,
+                tr.Name,
+                tr.Description,
+                tr.Price,
+                tr.Image,
+                tr.AmountInStock,
+                tr.Dimensions,
+                tr.TackRoomHangerType
+            );
+        }
+
         // DELETE
         public static bool Delete(int productId)
         {

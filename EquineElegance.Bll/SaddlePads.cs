@@ -66,6 +66,23 @@ namespace EquineElegance.Bll
             return SaddlePadDal.Update(sp);
         }
 
+        // een andere Update voor makkelijker gebruik in de Cart om de stock te updaten
+        public static bool Update(SaddlePad sp)
+        {
+            // Call the existing method with the cap object's properties
+            return Update(
+                sp.ProductId,
+                sp.Name,
+                sp.Description,
+                sp.Price,
+                sp.Image,
+                sp.AmountInStock,
+                sp.Color,
+                sp.HorseSize,
+                sp.SaddlePadType
+            );
+        }
+
         // DELETE
         public static bool Delete(int productId)
         {
