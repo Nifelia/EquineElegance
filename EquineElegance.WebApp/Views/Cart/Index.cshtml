@@ -1,69 +1,81 @@
 ﻿@using EquineElegance.Entities
-@using WebGrease
 
 @{
-	ViewBag.Title = "Winkelkar";
+    ViewBag.Title = "Winkelkar";
 }
 
 <h2>Winkelkar</h2>
 
-@if (TempData["Error"] != null)
+@if (TempData["Success"] != null)
 {
-	<div class="alert alert-danger">
-		@TempData["Error"]
-	</div>
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
 }
 
-<!-- tabel met huidige items in winkelkar -->
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
 
-<table>
-    
-	<tr>
-		<th>Product</th>
-		<th>Aantal</th>
-		<th>Prijs</th>
-        <th>Acties</th>
-	</tr>
-    
-	<!-- als er een winkelkar bestaat, inhoud van kar tonen in tabel -->
-	@if (Session["cart"] != null)
-	{
-		<!-- Cart object aanmaken op basis van Session -->
-		Cart cart = (Cart)Session["cart"];
+<!-- Add a form to enter the discount code -->
+<form action="@Url.Action("ApplyDiscountCode", "Cart")" method="post">
+    <label for="discountCode">Kortingscode:</label>
+    <input type="text" id="discountCode" name="discountCode" />
+    <button type="submit">Voeg kortingscode toe</button>
+</form>
 
-		foreach (var item in cart.CartItems)
-		{
-			<tr>
-				<td>@item.Product.Name</td>
-				<td>@item.Amount</td>
-				@{
-					decimal productPrice = item.Amount * item.Product.Price;
-				}
-				<td>@productPrice</td>
-				
-				<td>
-					<!-- Increase quantity -->
-					@Html.ActionLink("+", "IncreaseQuantity", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, null)
+@if (Session["cart"] != null)
+{
+    Cart cart = (Cart)Session["cart"];
+    if (cart.CartItems != null && cart.CartItems.Any())
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Aantal</th>
+                    <th>Prijs</th>
+                    <th>Acties</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in cart.CartItems)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Amount</td>
+                        @{
+                            decimal productPrice = item.Amount * item.Product.Price;
+                        }
+                        <td>€@productPrice</td>
+                        <td>
+                            @Html.ActionLink("+", "IncreaseQuantity", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, null)
+                            @Html.ActionLink("-", "DecreaseQuantity", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, null)
+                            @Html.ActionLink("Verwijderen", "RemoveProduct", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, null)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-					<!-- Decrease quantity -->
-					@Html.ActionLink("-", "DecreaseQuantity", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, null)
-
-					<!-- Remove product -->
-					@Html.ActionLink("Verwijderen", "RemoveProduct", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, null)
-				</td>
-			</tr>
-		}
-
-		<!-- totaalprijs berekenen -->
-		<tr>
-			<td colspan="2">Totaal</td>
-			@{
-				decimal totalPrice = cart.CartItems.Sum(item => item.Product.Price * item.Amount);
-			}
-			<td>@totalPrice</td>
-		</tr>
-	} 
-
-</table>
+        <!-- Show the discount and total price -->
+        <p>
+            Kortingscode: @ViewBag.DiscountCode <br />
+            Korting: €@ViewBag.Discount <br />
+            Totaalprijs: €@(cart.CartItems.Sum(item => item.Product.Price * item.Amount) - ViewBag.Discount)
+        </p>
+    }
+    else
+    {
+        <p>Uw winkelkar is leeg.</p>
+    }
+}
+else
+{
+    <p>Uw winkelkar is leeg.</p>
+}
 
 @Html.ActionLink("Kar leegmaken", "ClearCart", "Cart")

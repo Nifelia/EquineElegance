@@ -13,8 +13,28 @@ namespace EquineElegance.WebApp.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            return View();
+            // Ensure the cart is initialized
+            Cart cart = (Cart)Session["cart"];
+            if (cart == null)
+            {
+                cart = new Cart();
+                Session["cart"] = cart;
+            }
+
+            // Calculate the discount and apply it to the total price
+            decimal discount = CalculateDiscount(cart);
+            ViewBag.Discount = discount;
+            ViewBag.DiscountCode = cart.DiscountCode; // Pass the discount code to the view
+
+            return View(cart);
         }
+
+        private Dictionary<string, decimal> validDiscountCodes = new Dictionary<string, decimal>
+        {
+            { "DISCOUNT5", 5m },         // 5 euro discount
+            { "NEWCUSTOMER", 20m },      // 20 euro discount
+            { "WINTERSALE", 10m }        // 10 euro discount
+        };
 
         //methode om product aan winkelkar toe te voegen
         [HttpPost]
@@ -229,8 +249,48 @@ namespace EquineElegance.WebApp.Controllers
                     TackRooms.Update((TackRoom)product);
                     break;
             }
+
         }
 
+        [HttpPost]
+        public ActionResult ApplyDiscountCode(string discountCode)
+        {
+            Cart cart = (Cart)Session["cart"];
+            if (cart == null)
+            {
+                TempData["Error"] = "Er is geen winkelkar beschikbaar.";
+                return RedirectToAction("Index");
+            }
 
+            // Validate and apply the discount code
+            if (validDiscountCodes.TryGetValue(discountCode.ToUpper(), out decimal discountAmount))
+            {
+                cart.DiscountCode = discountCode.ToUpper();
+                cart.DiscountAmount = validDiscountCodes[discountCode.ToUpper()];
+                TempData["Success"] = $"Kortingscode '{discountCode}' toegepast! U ontvangt €{discountAmount} korting.";
+            }
+            else
+            {
+                TempData["Error"] = "Geen geldige kortingscode.";
+            }
+
+            Session["cart"] = cart;
+            return RedirectToAction("Index");
+        }
+
+        private decimal CalculateDiscount(Cart cart)
+        {
+            if (cart == null || string.IsNullOrEmpty(cart.DiscountCode))
+            {
+                return 0m; // No discount if the cart or discount code is null/empty
+            }
+
+            if (validDiscountCodes.ContainsKey(cart.DiscountCode))
+            {
+                return validDiscountCodes[cart.DiscountCode];
+            }
+
+            return 0m;
+        }
     }
 }
