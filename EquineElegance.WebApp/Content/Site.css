@@ -18,3 +18,18 @@ select,
 textarea {
     max-width: 280px;
 }
+
+body {
+    background-color: #fff7e0;
+}
+
+/* Navbar background color */
+.navbar {
+    background-color: #f5c656 !important;
+}
+
+/* Footer background color */
+footer {
+    background-color: #f5c656;
+    color: #fff;
+}

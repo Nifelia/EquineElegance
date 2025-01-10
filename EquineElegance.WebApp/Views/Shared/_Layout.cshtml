@@ -1,63 +1,65 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Equine Elegance</title>
-    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/sketchy/bootstrap.min.css">
+
+    @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm" style="background-color: #f5c656;">
         <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                <img src="~/Content/Images/Logo/EquineEleganceLogo.png" alt="Equine Elegance Logo" style="height: 200px;" /> <!-- Adjust the height as needed -->
+
+            </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul id="menu" class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Over", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
 
-                    <!-- Product Categories (Ruiter, Paard, Stal) -->
+                    <!-- Product Categories -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="ruiterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Ruiter
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="ruiterDropdown">
                             <li>@Html.ActionLink("Caps", "Index", "Cap", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("RidingPants", "Index", "RidingPant", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li>@Html.ActionLink("Rijbroeken", "Index", "RidingPant", new { area = "" }, new { @class = "dropdown-item" })</li>
                         </ul>
                     </li>
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="paardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Paard
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="paardDropdown">
-                            <li>@Html.ActionLink("Blankets", "Index", "Blanket", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("SaddlePads", "Index", "SaddlePad", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li>@Html.ActionLink("Dekens", "Index", "Blanket", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li>@Html.ActionLink("Dekjes", "Index", "SaddlePad", new { area = "" }, new { @class = "dropdown-item" })</li>
                         </ul>
                     </li>
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="stalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Stal
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="stalDropdown">
-                            <li>@Html.ActionLink("Feeders", "Index", "Feeder", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("TackRooms", "Index", "TackRoom", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li>@Html.ActionLink("Voederbakken", "Index", "Feeder", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li>@Html.ActionLink("Zadelkamer", "Index", "TackRoom", new { area = "" }, new { @class = "dropdown-item" })</li>
                         </ul>
                     </li>
-
-                    <!-- Cart Link -->
-                    <li>@Html.ActionLink("Cart", "Index", "Cart", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Winkelkar", "Index", "Cart", new { area = "" }, new { @class = "nav-link" })</li>
 
                     @if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
                     {
-                        <li>@Html.ActionLink("Roles", "Index", "Roles", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Rollen", "Index", "Roles", new { area = "" }, new { @class = "nav-link" })</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -65,10 +67,14 @@
         </div>
     </nav>
 
-    <div class="container body-content">
+    <div class="container">
+        <!-- This is where the page content is injected -->
         @RenderBody()
+    </div>
+
+    <div class="container py-5 body-content">
         <hr />
-        <footer>
+        <footer class="text-center py-4" style="background-color: #f5c656; color: #fff;">
             <p>&copy; @DateTime.Now.Year - Equine Elegance</p>
         </footer>
     </div>
@@ -77,23 +83,33 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include jQuery-menu-aim Plugin -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-    <script src="~/Scripts/menu/menu-aim.js"></script>
+    <!-- jQuery-menu-aim Plugin -->
+    <script src="~/Scripts/menu/jquery.menu-aim.js"></script>
+
 
     <script>
-        $(function() {
-            $('#menu').menuAim({
+        $(function () {
+            // Initialize jQuery-menu-aim on your dropdown menus
+            $('#menu .dropdown').menuAim({
                 activate: function (row) {
-                    $(row).children('a').css('color', 'red'); // Example action on hover
+                    // This is where you can handle item activation or show the dropdown
+                    $(row).children('.dropdown-menu').stop(true, true).fadeIn(200); // Show the dropdown with fade-in
                 },
                 deactivate: function (row) {
-                    $(row).children('a').css('color', ''); // Reset action on hover exit
+                    // Optionally, you can hide the dropdown when deactivating
+                    $(row).children('.dropdown-menu').stop(true, true).fadeOut(200); // Hide the dropdown with fade-out
+                },
+                exitMenu: function () {
+                    // Optionally, hide dropdown when the cursor exits the menu
+                    $(this).children('.dropdown-menu').stop(true, true).fadeOut(200);
                 }
             });
         });
     </script>
-
 </body>
 </html>
