@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace EquineElegance.Entities
     {
         // Blanket (deken) class met de overerving van Product & HorseProduct waarin het type dekje kan bepaald worden
 
+        [Required(ErrorMessage = "Selecteer een dekentype.")]
         public BlanketType BlanketType { get; set; }
 
         public Blanket(string name, string description, decimal price, string image, int amountInStock, Color color, HorseSize horseSize, 

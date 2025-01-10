@@ -1,4 +1,5 @@
-﻿@model EquineElegance.Entities.Blanket
+﻿@using EquineElegance.Entities
+@model EquineElegance.Entities.Blanket
 
 @{
     ViewBag.Title = "Create";
@@ -54,8 +55,12 @@
 	        @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
 	        <div class="col-md-10">
 		        @Html.DropDownListFor(model => model.Color,
-			        new SelectList(Enum.GetValues(typeof(EquineElegance.Entities.Color))),
-			        "Selecteer een Color", new { @class = "form-control" })
+			        Enum.GetValues(typeof(Color)).Cast<Color>().Select(c => new SelectListItem
+			        {
+				        Value = ((int)c).ToString(),
+				        Text = c.ToString()
+			        }), "Select Color", new { @class = "form-control" })
+		        @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
 	        </div>
         </div>
 
@@ -63,16 +68,26 @@
 	        @Html.LabelFor(model => model.HorseSize, htmlAttributes: new { @class = "control-label col-md-2" })
 	        <div class="col-md-10">
 		        @Html.DropDownListFor(model => model.HorseSize,
-			        new SelectList(Enum.GetValues(typeof(EquineElegance.Entities.HorseSize))),
-			        "Selecteer een paardenmaat", new { @class = "form-control" })
+			        Enum.GetValues(typeof(HorseSize)).Cast<HorseSize>().Select(c => new SelectListItem
+			        {
+				        Value = ((int)c).ToString(),
+				        Text = c.ToString()
+			        }), "Select HorseSize", new { @class = "form-control" })
+		        @Html.ValidationMessageFor(model => model.HorseSize, "", new { @class = "text-danger" })
 	        </div>
         </div>
+        
+
         <div class="form-group">
 	        @Html.LabelFor(model => model.BlanketType, htmlAttributes: new { @class = "control-label col-md-2" })
 	        <div class="col-md-10">
 		        @Html.DropDownListFor(model => model.BlanketType,
-			        new SelectList(Enum.GetValues(typeof(EquineElegance.Entities.BlanketType))),
-			        "Selecteer een type deken", new { @class = "form-control" })
+			        Enum.GetValues(typeof(BlanketType)).Cast<BlanketType>().Select(c => new SelectListItem
+			        {
+				        Value = ((int)c).ToString(),
+				        Text = c.ToString()
+			        }), "Select BlanketType", new { @class = "form-control" })
+		        @Html.ValidationMessageFor(model => model.BlanketType, "", new { @class = "text-danger" })
 	        </div>
         </div>
 
@@ -91,5 +106,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

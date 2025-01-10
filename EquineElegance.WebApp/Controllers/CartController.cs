@@ -105,5 +105,67 @@ namespace EquineElegance.WebApp.Controllers
             Session.Clear();
             return RedirectToAction("Index");
         }
+
+        // Increase Quantity
+        public ActionResult IncreaseQuantity(int productId, ProductType productType)
+        {
+            if (Session["cart"] != null)
+            {
+                Cart cart = (Cart)Session["cart"];
+                var item = cart.CartItems.FirstOrDefault(i => i.Product.ProductId == productId && i.ProductType == productType);
+
+                if (item != null)
+                {
+                    item.Amount++; // Increment the amount
+                }
+
+                Session["cart"] = cart;
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        // Decrease Quantity
+        public ActionResult DecreaseQuantity(int productId, ProductType productType)
+        {
+            if (Session["cart"] != null)
+            {
+                Cart cart = (Cart)Session["cart"];
+                var item = cart.CartItems.FirstOrDefault(i => i.Product.ProductId == productId && i.ProductType == productType);
+
+                if (item != null)
+                {
+                    if (item.Amount > 1) // Ensure quantity doesn't go below 1
+                    {
+                        item.Amount--;
+                    }
+                }
+
+                Session["cart"] = cart;
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        // Remove Product
+        public ActionResult RemoveProduct(int productId, ProductType productType)
+        {
+            if (Session["cart"] != null)
+            {
+                Cart cart = (Cart)Session["cart"];
+                var item = cart.CartItems.FirstOrDefault(i => i.Product.ProductId == productId && i.ProductType == productType);
+
+                if (item != null)
+                {
+                    cart.CartItems.Remove(item); // Remove the item from the cart
+                }
+
+                Session["cart"] = cart;
+            }
+
+            return RedirectToAction("Index");
+
+        }
+
     }
 }

@@ -63,6 +63,10 @@
     <Compile Include="Migrations\202411291536549_ChangesToCartItem.Designer.cs">
       <DependentUpon>202411291536549_ChangesToCartItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501092323001_AddUpdatesAndValidation.cs" />
+    <Compile Include="Migrations\202501092323001_AddUpdatesAndValidation.Designer.cs">
+      <DependentUpon>202501092323001_AddUpdatesAndValidation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RidingPantDal.cs" />
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411291536549_ChangesToCartItem.resx">
       <DependentUpon>202411291536549_ChangesToCartItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501092323001_AddUpdatesAndValidation.resx">
+      <DependentUpon>202501092323001_AddUpdatesAndValidation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
