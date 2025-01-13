@@ -4,7 +4,7 @@
     ViewBag.Title = "Winkelkar";
 }
 
-<h2>Winkelkar</h2>
+<h2 class="text-center">Winkelkar</h2>
 
 @if (TempData["Success"] != null)
 {
@@ -20,62 +20,72 @@
     </div>
 }
 
-<!-- Add a form to enter the discount code -->
-<form action="@Url.Action("ApplyDiscountCode", "Cart")" method="post">
-    <label for="discountCode">Kortingscode:</label>
-    <input type="text" id="discountCode" name="discountCode" />
-    <button type="submit">Voeg kortingscode toe</button>
-</form>
-
 @if (Session["cart"] != null)
 {
     Cart cart = (Cart)Session["cart"];
     if (cart.CartItems != null && cart.CartItems.Any())
     {
-        <table>
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Aantal</th>
-                    <th>Prijs</th>
-                    <th>Acties</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in cart.CartItems)
-                {
+        <div class="cart-container">
+            <table class="cart-table">
+                <thead>
                     <tr>
-                        <td>@item.Product.Name</td>
-                        <td>@item.Amount</td>
-                        @{
-                            decimal productPrice = item.Amount * item.Product.Price;
-                        }
-                        <td>€@productPrice</td>
-                        <td>
-                            @Html.ActionLink("+", "IncreaseQuantity", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, null)
-                            @Html.ActionLink("-", "DecreaseQuantity", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, null)
-                            @Html.ActionLink("Verwijderen", "RemoveProduct", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, null)
-                        </td>
+                        <th>Product</th>
+                        <th>Aantal</th>
+                        <th>Prijs</th>
+                        <th>Acties</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in cart.CartItems)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@item.Product.Name</strong><br />
+                            </td>
+                            <td>@item.Amount</td>
+                            @{
+                                decimal productPrice = item.Amount * item.Product.Price;
+                            }
+                            <td>€@productPrice</td>
+                            <td>
+                                @Html.ActionLink("+", "IncreaseQuantity", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, new { @class = "btn btn-sm btn-success" })
+                                @Html.ActionLink("-", "DecreaseQuantity", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, new { @class = "btn btn-sm btn-warning" })
+                                @Html.ActionLink("Verwijderen", "RemoveProduct", "Cart", new { productId = item.Product.ProductId, productType = item.ProductType }, new { @class = "btn btn-sm btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
-        <!-- Show the discount and total price -->
-        <p>
-            Kortingscode: @ViewBag.DiscountCode <br />
-            Korting: €@ViewBag.Discount <br />
-            Totaalprijs: €@(cart.CartItems.Sum(item => item.Product.Price * item.Amount) - ViewBag.Discount)
-        </p>
+            <div class="cart-summary">
+                <form action="@Url.Action("ApplyDiscountCode", "Cart")" method="post" class="discount-form">
+                    <label for="discountCode">Kortingscode:</label>
+                    <input type="text" id="discountCode" name="discountCode" class="form-control" />
+                    <button type="submit" class="btn btn-primary mt-2">Voeg kortingscode toe</button>
+                </form>
+
+                @{
+	                decimal originalTotal = cart.CartItems.Sum(item => item.Product.Price * item.Amount);
+	                decimal discountedTotal = originalTotal - ViewBag.Discount;
+                }
+                <p>
+	                Kortingscode: @ViewBag.DiscountCode <br />
+	                Oorspronkelijke prijs: €@originalTotal <br />
+	                Korting: €@ViewBag.Discount <br />
+	                Totaalprijs na korting: €@discountedTotal
+                </p>
+
+
+                @Html.ActionLink("Kar leegmaken", "ClearCart", "Cart", new { }, new { @class = "btn btn-danger" })
+            </div>
+        </div>
     }
     else
     {
-        <p>Uw winkelkar is leeg.</p>
+        <p class="text-center">Uw winkelkar is leeg.</p>
     }
 }
 else
 {
-    <p>Uw winkelkar is leeg.</p>
+    <p class="text-center">Uw winkelkar is leeg.</p>
 }
-
-@Html.ActionLink("Kar leegmaken", "ClearCart", "Cart")

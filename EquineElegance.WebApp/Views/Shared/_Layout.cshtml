@@ -22,46 +22,47 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-			<ul id="menu" class="navbar-nav flex-grow-1">
-				<li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-				<li class="nav-item">@Html.ActionLink("Over", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-				<li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+            <ul id="menu" class="navbar-nav flex-grow-1">
+                <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("Over", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
 
-				<!-- Product Categories -->
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="ruiterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Ruiter
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="ruiterDropdown">
-						<li>@Html.ActionLink("Caps", "Index", "Cap", new { area = "" }, new { @class = "dropdown-item" })</li>
-						<li>@Html.ActionLink("Rijbroeken", "Index", "RidingPant", new { area = "" }, new { @class = "dropdown-item" })</li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="paardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Paard
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="paardDropdown">
-						<li>@Html.ActionLink("Dekens", "Index", "Blanket", new { area = "" }, new { @class = "dropdown-item" })</li>
-						<li>@Html.ActionLink("Dekjes", "Index", "SaddlePad", new { area = "" }, new { @class = "dropdown-item" })</li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="stalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Stal
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="stalDropdown">
-						<li>@Html.ActionLink("Voederbakken", "Index", "Feeder", new { area = "" }, new { @class = "dropdown-item" })</li>
-						<li>@Html.ActionLink("Zadelkamer", "Index", "TackRoom", new { area = "" }, new { @class = "dropdown-item" })</li>
-					</ul>
-				</li>
-				<li class="nav-item">@Html.ActionLink("Winkelkar", "Index", "Cart", new { area = "" }, new { @class = "nav-link" })</li>
+                <!-- Product Categories -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ruiterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ruiter
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="ruiterDropdown">
+                        <li>@Html.ActionLink("Caps", "Index", "Cap", new { area = "" }, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Rijbroeken", "Index", "RidingPant", new { area = "" }, new { @class = "dropdown-item" })</li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="paardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Paard
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="paardDropdown">
+                        <li>@Html.ActionLink("Dekens", "Index", "Blanket", new { area = "" }, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Dekjes", "Index", "SaddlePad", new { area = "" }, new { @class = "dropdown-item" })</li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="stalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Stal
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="stalDropdown">
+                        <li>@Html.ActionLink("Voederbakken", "Index", "Feeder", new { area = "" }, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Zadelkamer", "Index", "TackRoom", new { area = "" }, new { @class = "dropdown-item" })</li>
+                    </ul>
+                </li>
+                <li class="nav-item">@Html.ActionLink("Winkelkar", "Index", "Cart", new { area = "" }, new { @class = "nav-link" })</li>
 
-				@if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
-				{
-					<li class="nav-item">@Html.ActionLink("Rollen", "Index", "Roles", new { area = "" }, new { @class = "nav-link" })</li>
-				}
-			</ul>
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
+                {
+                    <li class="nav-item">@Html.ActionLink("Rollen", "Index", "Roles", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Product aanmaken", "QuickCreate", "Product", new { area = "" }, new { @class = "nav-link" })</li>
+                }
+            </ul>
 			@Html.Partial("_LoginPartial")
 		</div>
 	</div>

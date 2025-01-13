@@ -168,6 +168,7 @@
     <Compile Include="Controllers\FeederController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RidingPantController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SaddlePadController.cs" />
@@ -296,6 +297,7 @@
     <Content Include="Views\TackRoom\Details.cshtml" />
     <Content Include="Views\TackRoom\Edit.cshtml" />
     <Content Include="Views\TackRoom\Delete.cshtml" />
+    <Content Include="Views\Product\QuickCreate.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
