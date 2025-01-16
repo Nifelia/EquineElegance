@@ -6,7 +6,7 @@
     ViewBag.Title = "Feeder - Index";
 }
 
-<h2 class="text-center mb-4" style="color: #4dc7ef;">Explore Our Feeder Collection</h2>
+<h2 class="text-center mb-4" style="color: #4dc7ef;">Ontdek onze voederbakken collectie.</h2>
 
 @if (User.IsInRole("SuperAdmin") || User.IsInRole("Winkelbeheerder"))
 {
@@ -19,7 +19,7 @@
     @if (!Model.Any())
     {
         <div class="col text-center">
-            <p class="text-muted">No feeders available at the moment.</p>
+            <p class="text-muted">Momenteel geen producten beschikbaar.</p>
         </div>
     }
     else

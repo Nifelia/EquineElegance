@@ -128,6 +128,7 @@ namespace EquineElegance.WebApp.Controllers
                 Session["cart"] = cart;
             }
 
+            TempData["SuccessMessage"] = "Item added to the cart successfully!";
             return RedirectToAction("Index");
         }
 
